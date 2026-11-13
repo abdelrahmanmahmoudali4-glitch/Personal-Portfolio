@@ -104,21 +104,20 @@
 
                 <div class="about-facts-wrapper">
                     <div class="fact-card">
-                        <div class="fact-icon" id="secretGradCert" style="cursor: default; user-select: none;"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="fact-icon secret-trigger" id="secretGradCert" style="cursor: default; user-select: none;"><i class="fas fa-graduation-cap"></i></div>
                         <div class="fact-details">
                             <span>Education</span>
                             <strong>B.Eng. in Computer Engineering</strong>
                         </div>
                     </div>
-
+                    
                     <div class="fact-card highlight-card">
-                        <div class="fact-icon"><i class="fas fa-trophy"></i></div>
+                        <div class="fact-icon secret-trigger" id="secretAchievement" style="cursor: default; user-select: none;"><i class="fas fa-trophy"></i></div>
                         <div class="fact-details">
                             <span>Top Achievement</span>
                             <strong>1st Place | NTI Superhero Academy</strong>
                         </div>
                     </div>
-
                     <div class="fact-card">
                         <div class="fact-icon"><i class="fas fa-location-dot"></i></div>
                         <div class="fact-details">
@@ -142,21 +141,28 @@
 </section>
 
 <script>
-let clickCount = 0;
-let clickTimer = null;
+document.querySelectorAll('.secret-trigger').forEach(element => {
+    let clickCount = 0;
+    let clickTimer = null;
 
-document.getElementById('secretGradCert').addEventListener('click', function(e) {
-    clickCount++;
+    element.addEventListener('click', function(e) {
+        clickCount++;
 
-    clearTimeout(clickTimer);
-    clickTimer = setTimeout(() => {
-        clickCount = 0;
-    }, 600);
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => {
+            clickCount = 0;
+        }, 600);
 
-    if (clickCount === 4) {
-        window.open('https://drive.google.com/file/d/1ACsLGhMc7Yu-Aw4H6CiLKRA-sO_vnxoi/view?usp=drive_link', '_blank');
-        clickCount = 0;
-    }
+        if (clickCount === 4) {
+            if (this.id === 'secretGradCert') {
+                window.open('https://drive.google.com/file/d/1ACsLGhMc7Yu-Aw4H6CiLKRA-sO_vnxoi/view?usp=drive_link', '_blank');
+            } else if (this.id === 'secretAchievement') {
+                window.open('حط_لينك_الجائزة_أو_الشهادة_هنا', '_blank');
+            }
+            
+            clickCount = 0;
+        }
+    });
 });
 </script>
 <!-- =========================================================================================================================================== -->
